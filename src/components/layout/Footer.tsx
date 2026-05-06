@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Grid, Col, Section } from '@/components/layout/Grid'
 
@@ -66,12 +67,17 @@ export function Footer() {
           {/* Brand column — logo, tagline, social icons */}
           <Col span={4} mdSpan={8} lgSpan={4} className="flex flex-col gap-6">
             <div>
-              {/* TODO: ALAN — Add logo file to /public and update this import path */}
               <Link
                 href="/"
-                className="text-heading-lg text-brand-cream hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+                className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
               >
-                ABLE Publishing
+                <Image
+                  src="/logos/able-publishing/AP2.jpg"
+                  alt="ABLE Publishing"
+                  width={420}
+                  height={156}
+                  className="h-14 lg:h-[120px] w-auto object-contain invert mix-blend-screen"
+                />
               </Link>
               <p className="text-body-sm text-brand-cream/60 mt-2">
                 Achieving Beyond Limits &amp; Expectations
@@ -137,9 +143,18 @@ export function Footer() {
           <p className="text-caption text-brand-cream/40">
             &copy; {year} ABLE Publishing LLC. All rights reserved.
           </p>
-          <p className="text-caption text-brand-cream/30">
-            ablepublishing.art
-          </p>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logos/able-publishing/ABLE_Records-copy.png"
+              alt="ABLE Records"
+              width={48}
+              height={48}
+              className="h-10 w-10 object-contain opacity-80"
+            />
+            <p className="text-caption text-brand-cream/30">
+              ablepublishing.art
+            </p>
+          </div>
         </div>
       </div>
 

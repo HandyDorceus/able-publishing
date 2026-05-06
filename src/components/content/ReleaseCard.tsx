@@ -71,7 +71,17 @@ export function ReleaseCard({
 
       {/* Meta row — type eyebrow + pre-order badge */}
       <div className="flex items-center gap-3">
-        <span className="text-heading-sm text-brand-gold">
+        <span className="flex items-center text-heading-sm text-brand-gold">
+          {(type === 'book' || type === 'single') && (
+            <Image
+              src="/logos/the-store/Pen_Icon.jpg"
+              alt=""
+              width={16}
+              height={16}
+              className="inline-block w-4 h-4 object-contain mr-1.5 opacity-70"
+              aria-hidden="true"
+            />
+          )}
           {TYPE_LABEL[type]}
         </span>
 
