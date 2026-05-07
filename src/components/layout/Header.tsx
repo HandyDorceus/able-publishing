@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { SOCIAL } from '@/lib/contact'
 
 // ─── Nav links ────────────────────────────────────────────────────────────────
 
@@ -97,8 +98,23 @@ export function Header({ cartCount = 0 }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Actions: cart + mobile menu */}
+        {/* Actions: Instagram + cart + mobile menu */}
         <div className="flex items-center gap-2">
+
+          {/* Instagram — icon only, desktop */}
+          <a
+            href={SOCIAL.instagram.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={SOCIAL.instagram.label}
+            className="hidden md:flex p-2 text-brand-dark/60 hover:text-brand-dark transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
 
           {/* Cart icon + badge */}
           <Link

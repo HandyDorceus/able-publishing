@@ -39,6 +39,15 @@ const inputClass = cn(
   'focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent',
 )
 
+// ─── Department options ───────────────────────────────────────────────────────
+
+const DEPARTMENTS = [
+  { value: 'general',    label: 'General Inquiry'       },
+  { value: 'publishing', label: 'Publishing & Services' },
+  { value: 'orders',     label: 'Order Support'         },
+  { value: 'support',    label: 'General Support'       },
+] as const
+
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function ContactForm() {
@@ -61,9 +70,6 @@ export function ContactForm() {
   return (
     <form action={formAction} noValidate className="flex flex-col gap-6">
 
-      {/* Honeypot — hidden from real users, traps bots */}
-      <input type="text" name="_gotcha" className="hidden" aria-hidden="true" tabIndex={-1} />
-
       {/* Generic error */}
       {state?.error && !state.fieldErrors && (
         <p className="text-body-sm text-red-600 rounded-lg border border-red-200 bg-red-50 px-4 py-3" role="alert">
@@ -71,6 +77,7 @@ export function ContactForm() {
         </p>
       )}
 
+      {/* 1. Name + 2. Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Field label="Name" id="name" error={state?.fieldErrors?.name}>
           <input
@@ -97,6 +104,22 @@ export function ContactForm() {
         </Field>
       </div>
 
+      {/* 3. Department */}
+      <Field label="Department" id="department" error={state?.fieldErrors?.department}>
+        <select
+          id="department"
+          name="department"
+          defaultValue="general"
+          className={cn(inputClass, state?.fieldErrors?.department && 'border-red-400 focus:ring-red-400')}
+          aria-invalid={!!state?.fieldErrors?.department}
+        >
+          {DEPARTMENTS.map(({ value, label }) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </select>
+      </Field>
+
+      {/* 4. Subject */}
       <Field label="Subject" id="subject" error={state?.fieldErrors?.subject}>
         <input
           id="subject"
@@ -107,6 +130,7 @@ export function ContactForm() {
         />
       </Field>
 
+      {/* 5. Message */}
       <Field label="Message" id="message" error={state?.fieldErrors?.message}>
         <textarea
           id="message"
@@ -117,6 +141,9 @@ export function ContactForm() {
           aria-invalid={!!state?.fieldErrors?.message}
         />
       </Field>
+
+      {/* 6. Honeypot — hidden from real users, traps bots */}
+      <input type="text" name="_gotcha" className="hidden" aria-hidden="true" tabIndex={-1} />
 
       <button
         type="submit"

@@ -1,5 +1,7 @@
 'use server'
 
+import { CONTACT } from '@/lib/contact'
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface InquiryState {
@@ -36,13 +38,17 @@ export async function submitInquiry(
 
   if (Object.keys(fieldErrors).length > 0) return { success: false, fieldErrors }
 
+  const recipient = CONTACT.publishing
+
   // TODO: ALAN — Send email via Resend / SendGrid / similar:
   //   await resend.emails.send({
-  //     from: 'website@ablepublishing.art',
-  //     to:   'info@ablepublishing.art',  // from Keystatic site_settings
+  //     from:    'website@ablepublishing.art',
+  //     to:      recipient,
   //     subject: `New inquiry — ${serviceType}`,
-  //     text: `Name: ${name}\nEmail: ${email}\nService: ${serviceType}\n\n${message}`,
+  //     text:    `Name: ${name}\nEmail: ${email}\nService: ${serviceType}\n\n${message}`,
   //   })
+
+  void recipient // referenced above — remove this line when email sending is wired
 
   return { success: true }
 }

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Grid, Col, Section } from '@/components/layout/Grid'
+import { CONTACT, SOCIAL } from '@/lib/contact'
 
 // ─── Nav links ────────────────────────────────────────────────────────────────
 
@@ -10,46 +11,6 @@ const NAV_LINKS = [
   { label: 'Services', href: '/services' },
   { label: 'About',    href: '/about'    },
   { label: 'Contact',  href: '/contact'  },
-] as const
-
-// ─── Social links (URLs are placeholders — wired to Keystatic site_settings) ──
-
-const SOCIAL_LINKS = [
-  {
-    label: 'Instagram',
-    // TODO: ALAN — Replace with confirmed Instagram URL from Keystatic site_settings
-    href: 'https://instagram.com',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Twitter / X',
-    // TODO: ALAN — Replace with confirmed Twitter/X URL from Keystatic site_settings
-    href: 'https://twitter.com',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Spotify',
-    // TODO: ALAN — Replace with confirmed Spotify URL from Keystatic site_settings
-    href: 'https://spotify.com',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M8 11.5c2.5-1 5.5-1 8 0" />
-        <path d="M8.5 14.5c2-0.8 4.5-0.8 6.5 0" />
-        <path d="M9 8.5c2.8-1.2 6-1.2 8.5 0" />
-      </svg>
-    ),
-  },
 ] as const
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -64,7 +25,7 @@ export function Footer() {
       <Section>
         <Grid>
 
-          {/* Brand column — logo, tagline, social icons */}
+          {/* Brand column — logo, tagline, Instagram */}
           <Col span={4} mdSpan={8} lgSpan={4} className="flex flex-col gap-6">
             <div>
               <Link
@@ -80,30 +41,74 @@ export function Footer() {
                 />
               </Link>
               <p className="text-body-sm text-brand-cream/60 mt-2">
-                Achieving Beyond Limits &amp; Expectations
+                Achieving Beyond Limits &amp; Expectations.
+                Empowering independent creators of literature,
+                music, and poetry.
               </p>
             </div>
 
-            {/* Social icons */}
-            <div className="flex items-center gap-4">
-              {SOCIAL_LINKS.map(({ label, href, icon }) => (
+            <a
+              href={SOCIAL.instagram.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={SOCIAL.instagram.label}
+              className="inline-flex items-center gap-2 text-brand-cream/60 hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+              </svg>
+              {SOCIAL.instagram.handle}
+            </a>
+          </Col>
+
+          {/* Contact column */}
+          <Col span={4} mdSpan={4} lgSpan={3} start={6} className="flex flex-col gap-3">
+            <p className="text-heading-sm text-brand-cream/40">Contact</p>
+            <ul className="flex flex-col gap-3">
+              <li className="flex flex-col gap-0.5">
+                <span className="text-caption text-brand-cream/40">General</span>
                 <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-cream/60 hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
-                  aria-label={label}
+                  href={`mailto:${CONTACT.general}`}
+                  className="text-body-sm text-brand-cream/70 hover:text-brand-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
                 >
-                  {icon}
+                  {CONTACT.general}
                 </a>
-              ))}
-            </div>
+              </li>
+              <li className="flex flex-col gap-0.5">
+                <span className="text-caption text-brand-cream/40">Publishing &amp; Services</span>
+                <a
+                  href={`mailto:${CONTACT.publishing}`}
+                  className="text-body-sm text-brand-cream/70 hover:text-brand-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+                >
+                  {CONTACT.publishing}
+                </a>
+              </li>
+              <li className="flex flex-col gap-0.5">
+                <span className="text-caption text-brand-cream/40">Orders</span>
+                <a
+                  href={`mailto:${CONTACT.orders}`}
+                  className="text-body-sm text-brand-cream/70 hover:text-brand-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+                >
+                  {CONTACT.orders}
+                </a>
+              </li>
+              <li className="flex flex-col gap-0.5">
+                <span className="text-caption text-brand-cream/40">Support</span>
+                <a
+                  href={`mailto:${CONTACT.support}`}
+                  className="text-body-sm text-brand-cream/70 hover:text-brand-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+                >
+                  {CONTACT.support}
+                </a>
+              </li>
+            </ul>
           </Col>
 
           {/* Nav column */}
-          <Col span={4} mdSpan={4} lgSpan={3} start={6} className="flex flex-col gap-3">
-            <p className="text-heading-sm text-brand-cream/40">Navigation</p>
+          <Col span={4} mdSpan={4} lgSpan={3} start={10} className="flex flex-col gap-3">
+            <p className="text-heading-sm text-brand-cream/40">Navigate</p>
             <nav aria-label="Footer navigation">
               <ul className="flex flex-col gap-2">
                 {NAV_LINKS.map(({ label, href }) => (
@@ -118,20 +123,6 @@ export function Footer() {
                 ))}
               </ul>
             </nav>
-          </Col>
-
-          {/* Contact column */}
-          <Col span={4} mdSpan={4} lgSpan={3} start={10} className="flex flex-col gap-3">
-            <p className="text-heading-sm text-brand-cream/40">Get in Touch</p>
-            <div className="flex flex-col gap-2">
-              <a
-                href="mailto:info@ablepublishing.art"
-                className="text-body-sm text-brand-cream/70 hover:text-brand-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
-              >
-                {/* TODO: ALAN — Replace with confirmed contact email from Keystatic site_settings */}
-                info@ablepublishing.art
-              </a>
-            </div>
           </Col>
 
         </Grid>

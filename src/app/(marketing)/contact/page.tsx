@@ -1,54 +1,45 @@
 import type { Metadata } from 'next'
 import { Section, Grid, Col } from '@/components/layout/Grid'
+import { ContactInfo }        from '@/components/content/ContactInfo'
 import { ContactForm }        from '@/components/forms/ContactForm'
 
 export const metadata: Metadata = {
-  title:       'Contact — ABLE Publishing',
-  description: 'Get in touch with ABLE Publishing. We\'d love to hear from you.',
+  title:       'Contact | ABLE Publishing',
+  description: 'Reach the ABLE Publishing team for general inquiries, publishing services, order support, or general support.',
 }
 
 export default function ContactPage() {
   return (
-    <Section flush className="py-16 md:py-24 bg-brand-cream">
-      <Grid className="gap-y-12 lg:gap-y-0 items-start">
-
-        {/* Contact info */}
-        <Col span={4} mdSpan={8} lgSpan={4} className="flex flex-col gap-8">
-          <div className="flex flex-col gap-3">
-            <span className="text-heading-sm text-brand-gold">Reach Out</span>
-            <h1 className="text-display-lg text-brand-dark">Contact Us</h1>
+    <>
+      {/* Page header */}
+      <Section flush className="py-16 md:py-20 bg-brand-cream border-b border-brand-dark/10">
+        <Grid>
+          <Col span={4} mdSpan={8} lgSpan={8} start={3} className="flex flex-col gap-3 text-center">
+            <h1 className="text-display-lg text-brand-dark">Get in Touch</h1>
             <p className="text-body-lg text-brand-dark/60">
-              Have a question, a project in mind, or just want to say hello? We&apos;d love to hear from you.
+              Reach our team directly — every message goes to the right inbox.
             </p>
-          </div>
+          </Col>
+        </Grid>
+      </Section>
 
-          <div className="flex flex-col gap-6">
-            {/* Email */}
-            <div className="flex flex-col gap-1">
-              <p className="text-label text-brand-dark/50">Email</p>
-              {/* TODO: ALAN — Replace with confirmed contact email from Keystatic site_settings */}
-              <a
-                href="mailto:info@ablepublishing.art"
-                className="text-body-md text-brand-dark hover:text-brand-gold transition-colors duration-150"
-              >
-                info@ablepublishing.art
-              </a>
-            </div>
+      {/* Contact category cards */}
+      <Section>
+        <Grid>
+          <Col span={4} mdSpan={8} lgSpan={12}>
+            <ContactInfo />
+          </Col>
+        </Grid>
+      </Section>
 
-            {/* Response time */}
-            <div className="flex flex-col gap-1">
-              <p className="text-label text-brand-dark/50">Response Time</p>
-              <p className="text-body-md text-brand-dark/70">Within 2 business days</p>
-            </div>
-          </div>
-        </Col>
-
-        {/* Form */}
-        <Col span={4} mdSpan={8} lgSpan={7} start={6}>
-          <ContactForm />
-        </Col>
-
-      </Grid>
-    </Section>
+      {/* Contact form */}
+      <Section flush className="pb-24">
+        <Grid>
+          <Col span={4} mdSpan={8} lgSpan={8} start={3}>
+            <ContactForm />
+          </Col>
+        </Grid>
+      </Section>
+    </>
   )
 }

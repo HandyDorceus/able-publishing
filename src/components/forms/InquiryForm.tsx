@@ -3,6 +3,7 @@
 import { useActionState } from 'react'
 import { cn } from '@/lib/utils'
 import { submitInquiry, type InquiryState } from '@/lib/actions/inquiry'
+import { CONTACT } from '@/lib/contact'
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -132,6 +133,10 @@ export function InquiryForm() {
       >
         {isPending ? 'Sending…' : 'Send Inquiry'}
       </button>
+
+      <p className="text-caption text-brand-dark/50 text-center mt-3">
+        Your message will be sent to {CONTACT.publishing}
+      </p>
 
     </form>
   )
