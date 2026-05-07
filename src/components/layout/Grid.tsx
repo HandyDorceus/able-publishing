@@ -85,9 +85,10 @@ export function Grid({ as = 'div', className, children }: GridProps) {
     <Tag
       className={cn(
         'grid',
-        'grid-cols-4 gap-x-4 px-4',            // mobile:  4 cols, 16px gutter, 16px margin
-        'md:grid-cols-8 md:gap-x-4 md:px-10',  // tablet:  8 cols, 16px gutter, 40px margin
-        'lg:grid-cols-12 lg:gap-x-6 lg:px-20', // desktop: 12 cols, 24px gutter, 80px margin
+        'grid-cols-4 gap-x-4 px-[var(--page-px)]',            // mobile:  4 cols, 16px gutter
+        'md:grid-cols-8 md:gap-x-4',                           // tablet:  8 cols, 16px gutter
+        'lg:grid-cols-12 lg:gap-x-6',                          // desktop: 12 cols, 24px gutter
+        // horizontal padding is handled by --page-px (fluid 32px→144px from 768px→1440px+)
         'w-full max-w-screen-2xl mx-auto',
         className,
       )}

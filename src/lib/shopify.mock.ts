@@ -1,0 +1,131 @@
+import type { Product, Cart } from '@/types/shopify'
+
+export const MOCK_PRODUCTS: Product[] = [
+  {
+    id: 'gid://shopify/Product/1',
+    title: 'A Bullet Led Epiphany: Poems From The Other Side Of Me, Volume I',
+    handle: 'a-bullet-led-epiphany-volume-1',
+    description: 'A powerful debut poetry collection exploring survival, identity, and transformation.',
+    productType: 'Book',
+    tags: ['poetry', 'debut', 'preorder'],
+    isPreorder: true,
+    availableForSale: true,
+    price: '18.99',
+    compareAtPrice: null,
+    currencyCode: 'USD',
+    image: {
+      url: '/images/placeholder-book.jpg',
+      altText: 'A Bullet Led Epiphany book cover',
+      width: 800,
+      height: 1000,
+    },
+    images: [
+      {
+        url: '/images/placeholder-book.jpg',
+        altText: 'A Bullet Led Epiphany book cover',
+        width: 800,
+        height: 1000,
+      },
+    ],
+    variants: [
+      {
+        id: 'gid://shopify/ProductVariant/1',
+        title: 'Default',
+        availableForSale: true,
+        quantityAvailable: 100,
+        priceV2: { amount: '18.99', currencyCode: 'USD' },
+        compareAtPriceV2: null,
+        selectedOptions: [{ name: 'Title', value: 'Default Title' }],
+      },
+    ],
+    hasSellingPlan: true,
+  },
+  {
+    id: 'gid://shopify/Product/2',
+    title: 'The Other Side of The Pen — Digital Album',
+    handle: 'the-other-side-of-the-pen-digital-album',
+    description: 'The debut album from ABLE Records. Digital download included.',
+    productType: 'Music',
+    tags: ['album', 'digital', 'able-records'],
+    isPreorder: false,
+    availableForSale: true,
+    price: '9.99',
+    compareAtPrice: '14.99',
+    currencyCode: 'USD',
+    image: {
+      url: '/images/placeholder-album.jpg',
+      altText: 'The Other Side of The Pen album cover',
+      width: 800,
+      height: 800,
+    },
+    images: [
+      {
+        url: '/images/placeholder-album.jpg',
+        altText: 'The Other Side of The Pen album cover',
+        width: 800,
+        height: 800,
+      },
+    ],
+    variants: [
+      {
+        id: 'gid://shopify/ProductVariant/2',
+        title: 'Digital Download',
+        availableForSale: true,
+        quantityAvailable: 999,
+        priceV2: { amount: '9.99', currencyCode: 'USD' },
+        compareAtPriceV2: { amount: '14.99', currencyCode: 'USD' },
+        selectedOptions: [{ name: 'Format', value: 'Digital Download' }],
+      },
+    ],
+    hasSellingPlan: false,
+  },
+  {
+    id: 'gid://shopify/Product/3',
+    title: 'A Bullet Led Epiphany — Digital Edition',
+    handle: 'a-bullet-led-epiphany-digital',
+    description: 'Digital download edition of the debut poetry collection.',
+    productType: 'Digital',
+    tags: ['poetry', 'digital', 'ebook'],
+    isPreorder: false,
+    availableForSale: true,
+    price: '7.99',
+    compareAtPrice: null,
+    currencyCode: 'USD',
+    image: {
+      url: '/images/placeholder-book.jpg',
+      altText: 'A Bullet Led Epiphany digital edition',
+      width: 800,
+      height: 1000,
+    },
+    images: [
+      {
+        url: '/images/placeholder-book.jpg',
+        altText: 'A Bullet Led Epiphany digital edition',
+        width: 800,
+        height: 1000,
+      },
+    ],
+    variants: [
+      {
+        id: 'gid://shopify/ProductVariant/3',
+        title: 'PDF + EPUB',
+        availableForSale: true,
+        quantityAvailable: 999,
+        priceV2: { amount: '7.99', currencyCode: 'USD' },
+        compareAtPriceV2: null,
+        selectedOptions: [{ name: 'Format', value: 'PDF + EPUB' }],
+      },
+    ],
+    hasSellingPlan: false,
+  },
+]
+
+export const MOCK_CART: Cart = {
+  id: 'mock-cart-id',
+  checkoutUrl: 'https://theothersideofthepen.com/checkout',
+  totalQuantity: 0,
+  items: [],
+  subtotal: '0.00',
+  total: '0.00',
+  currencyCode: 'USD',
+}

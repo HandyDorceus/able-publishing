@@ -10,18 +10,16 @@ export const metadata: Metadata = {
 }
 
 export default async function StorePage() {
-  // TODO: ALAN — Connect Shopify (step 11). getAllProducts() returns [] until then.
   const products = await getAllProducts()
 
   return (
     <>
       <StoreHero />
 
-      {/* Products */}
       <Section>
         <Grid>
           <Col span={4} mdSpan={8} lgSpan={12}>
-            <StoreClient products={products} />
+            <StoreClient initialProducts={products} />
           </Col>
         </Grid>
       </Section>

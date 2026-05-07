@@ -130,7 +130,7 @@ export function Footer() {
 
       {/* ── Copyright bar ── */}
       <div className="border-t border-brand-cream/10">
-        <div className="flex items-center justify-between px-4 md:px-10 lg:px-20 py-5 w-full max-w-screen-2xl mx-auto">
+        <div className="flex items-center justify-between px-[var(--page-px)] py-5 w-full max-w-screen-2xl mx-auto">
           <p className="text-caption text-brand-cream/40">
             &copy; {year} ABLE Publishing LLC. All rights reserved.
           </p>

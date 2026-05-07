@@ -3,16 +3,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import type { Product } from '@/lib/shopify'
+import { useCart } from '@/context/CartContext'
+import type { Product } from '@/types/shopify'
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 interface ProductCardProps {
   product: Product
-  onAddToCart?: (productId: string) => void
 }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function formatPrice(amount: string, currencyCode: string): string {
   return new Intl.NumberFormat('en-US', {
@@ -23,11 +23,28 @@ function formatPrice(amount: string, currencyCode: string): string {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export function ProductCard({ product, onAddToCart }: ProductCardProps) {
-  const { id, title, handle, productType, priceRange, images, isPreorder } = product
-  const image    = images[0] ?? null
-  const price    = priceRange.minVariantPrice
-  const href     = `/store/${handle}`
+export function ProductCard({ product }: ProductCardProps) {
+  const {
+    title,
+    handle,
+    productType,
+    price,
+    compareAtPrice,
+    currencyCode,
+    image,
+    isPreorder,
+    availableForSale,
+    variants,
+  } = product
+
+  const { addItem } = useCart()
+  const href         = `/store/${handle}`
+  const firstVariant = variants[0]
+
+  async function handleAddToCart() {
+    if (!firstVariant) return
+    await addItem(firstVariant.id)
+  }
 
   return (
     <article className="relative flex flex-col gap-4 group">
@@ -48,13 +65,13 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       {/* Cover image */}
       <Link
         href={href}
-        className="block relative overflow-hidden rounded-md bg-brand-dark/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
+        className="block relative overflow-hidden rounded-md bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
         aria-label={`View ${title}`}
         tabIndex={-1}
       >
         <div className={cn(
           'relative w-full',
-          productType === 'Books' ? 'aspect-[2/3]' : 'aspect-square',
+          productType === 'Book' ? 'aspect-[3/4]' : 'aspect-square',
         )}>
           {image ? (
             <Image
@@ -65,26 +82,25 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
-            /* Placeholder when no image is set */
-            <div className="absolute inset-0 flex items-center justify-center bg-brand-dark/5">
-              <span className="text-heading-sm text-brand-dark/30">{productType}</span>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-heading-sm text-brand-cream/30">{productType}</span>
             </div>
           )}
         </div>
       </Link>
 
-      {/* Type badge + pre-order */}
+      {/* Type eyebrow + pre-order badge */}
       <div className="flex items-center gap-3">
         <span className="text-heading-sm text-brand-gold">{productType}</span>
         {isPreorder && (
-          <span className="text-heading-sm text-brand-cream bg-brand-dark px-2 py-0.5 rounded-full">
+          <span className="text-heading-sm text-brand-cream bg-brand-gold px-2 py-0.5 rounded-full">
             Pre-order
           </span>
         )}
       </div>
 
       {/* Title */}
-      <h3 className="text-heading-md text-brand-dark">
+      <h3 className="text-display-md text-brand-dark line-clamp-2">
         <Link
           href={href}
           className="hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
@@ -94,18 +110,33 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       </h3>
 
       {/* Price */}
-      <p className="text-body-sm text-brand-dark font-medium">
-        {formatPrice(price.amount, price.currencyCode)}
+      <p className="text-body-sm text-brand-dark font-medium flex items-center gap-2">
+        <span>{formatPrice(price, currencyCode)}</span>
+        {compareAtPrice && (
+          <span className="line-through text-brand-dark/40">
+            {formatPrice(compareAtPrice, currencyCode)}
+          </span>
+        )}
       </p>
 
-      {/* Add to Cart / Pre-order CTA */}
-      <button
-        className="btn-primary w-full"
-        onClick={() => onAddToCart?.(id)}
-        aria-label={isPreorder ? `Pre-order ${title}` : `Add ${title} to cart`}
-      >
-        {isPreorder ? 'Pre-order' : 'Add to Cart'}
-      </button>
+      {/* CTA */}
+      {availableForSale ? (
+        <button
+          className="btn-primary w-full"
+          onClick={handleAddToCart}
+          aria-label={isPreorder ? `Pre-order ${title}` : `Add ${title} to cart`}
+        >
+          {isPreorder ? 'Pre-order Now' : 'Add to Cart'}
+        </button>
+      ) : (
+        <button
+          className="btn-secondary w-full"
+          disabled
+          aria-label={`${title} is out of stock`}
+        >
+          Out of Stock
+        </button>
+      )}
 
     </article>
   )

@@ -50,6 +50,12 @@
 
     --spacing-section:    6rem;
     --spacing-section-sm: 3.5rem;
+
+    /* Fluid horizontal page padding — single clamp, no breakpoints needed:
+       ≤672px  → 1rem  (16px, floor)
+        768px  → 2rem  (32px)
+       1440px+ → 9rem  (144px, ceiling) */
+    --page-px: clamp(1rem, calc(-6rem + 16.667vw), 9rem);
   }
 
   html {
