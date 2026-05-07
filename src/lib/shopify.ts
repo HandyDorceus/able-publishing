@@ -33,7 +33,7 @@ import {
 const STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!
 const API_VERSION  = process.env.NEXT_PUBLIC_SHOPIFY_API_VERSION ?? '2024-01'
-const USE_MOCK     = process.env.NEXT_PUBLIC_SHOPIFY_USE_MOCK === 'true'
+const USE_MOCK     = process.env.NEXT_PUBLIC_SHOPIFY_USE_MOCK !== 'false'
 
 const endpoint = `https://${STORE_DOMAIN}/api/${API_VERSION}/graphql.json`
 
