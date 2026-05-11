@@ -11,10 +11,11 @@ interface FilterBarProps {
 }
 
 const FILTERS: { label: string; value: ProductFilter }[] = [
-  { label: 'All',     value: 'All'     },
-  { label: 'Book',    value: 'Book'    },
-  { label: 'Music',   value: 'Music'   },
-  { label: 'Digital', value: 'Digital' },
+  { label: 'All',    value: 'All'    },
+  { label: 'Music',  value: 'Music'  },
+  { label: 'Book',   value: 'Book'   },
+  { label: 'Print',  value: 'Print'  },
+  { label: 'Bundle', value: 'Bundle' },
 ]
 
 // ─── Component ────────────────────────────────────────────────────────────────

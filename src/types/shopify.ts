@@ -74,7 +74,7 @@ export interface Product {
   title: string
   handle: string
   description: string
-  productType: 'Book' | 'Music' | 'Digital' | string
+  productType: 'Music' | 'Book' | 'Print' | 'Bundle' | string
   tags: string[]
   isPreorder: boolean
   availableForSale: boolean
@@ -107,4 +107,4 @@ export interface Cart {
   currencyCode: string
 }
 
-export type ProductFilter = 'All' | 'Book' | 'Music' | 'Digital'
+export type ProductFilter = 'All' | 'Music' | 'Book' | 'Print' | 'Bundle'
