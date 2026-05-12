@@ -47,20 +47,25 @@ export function Footer() {
               </p>
             </div>
 
-            <a
-              href={SOCIAL.instagram.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={SOCIAL.instagram.label}
-              className="inline-flex items-center gap-2 text-brand-cream/60 hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-              </svg>
-              {SOCIAL.instagram.handle}
-            </a>
+            <div className="flex flex-col gap-2">
+              {([SOCIAL.instagram, SOCIAL.instagramAble] as const).map((acct) => (
+                <a
+                  key={acct.href}
+                  href={acct.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={acct.label}
+                  className="inline-flex items-center gap-2 text-brand-cream/60 hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                  </svg>
+                  {acct.handle}
+                </a>
+              ))}
+            </div>
           </Col>
 
           {/* Contact column */}
