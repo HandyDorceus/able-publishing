@@ -68,6 +68,17 @@ async function shopifyFetch<T>(
 
 // ── Normalizers ───────────────────────────────────────────────────────────────
 
+// Derive productType from tags when Shopify's productType field is empty.
+// Alan will set productType in Shopify admin; once set it takes precedence.
+function inferProductType(productType: string, tags: string[]): string {
+  if (productType) return productType
+  if (tags.some((t) => t === 'Bundle')) return 'Bundle'
+  if (tags.some((t) => t === 'Print')) return 'Print'
+  if (tags.some((t) => t === 'Album' || t === 'Record')) return 'Music'
+  if (tags.some((t) => t === 'Book' || t === 'Audiobook' || t === 'eBook')) return 'Book'
+  return productType
+}
+
 function normalizeProduct(raw: ShopifyProduct): Product {
   const firstImage = raw.images.edges[0]?.node ?? null
   return {
@@ -75,9 +86,9 @@ function normalizeProduct(raw: ShopifyProduct): Product {
     title:            raw.title,
     handle:           raw.handle,
     description:      raw.description,
-    productType:      raw.productType,
+    productType:      inferProductType(raw.productType, raw.tags),
     tags:             raw.tags,
-    isPreorder:       raw.tags.includes('preorder'),
+    isPreorder:       raw.tags.some((t) => t.toLowerCase() === 'preorder'),
     availableForSale: raw.availableForSale,
     price:            raw.priceRange.minVariantPrice.amount,
     compareAtPrice:   raw.variants.edges[0]?.node.compareAtPriceV2?.amount ?? null,
