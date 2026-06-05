@@ -139,6 +139,17 @@ export function Footer() {
           <p className="text-caption text-brand-cream/40">
             &copy; {year} ABLE Publishing LLC. All rights reserved.
           </p>
+          <p className="text-caption text-brand-cream/30">
+            Website developed by{' '}
+            <a
+              href="https://www.linkedin.com/in/hdorce/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
+            >
+              Handy Dorceus
+            </a>
+          </p>
           <div className="flex items-center gap-3">
             <Image
               src="/logos/able-publishing/ABLE_Records-copy.png"

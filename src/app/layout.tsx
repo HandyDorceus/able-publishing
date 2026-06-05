@@ -4,10 +4,6 @@ import '@/styles/globals.css'
 export const metadata: Metadata = {
   title: 'Able Publishing',
   description: 'Achieving Beyond Limits & Expectations',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/logos/able-publishing/Pen_Icon.jpg',
-  },
 }
 
 export default function RootLayout({

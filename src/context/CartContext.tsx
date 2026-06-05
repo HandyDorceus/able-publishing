@@ -40,10 +40,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const savedId = localStorage.getItem(CART_ID_KEY)
 
       if (savedId) {
-        const existing = await getCart(savedId)
-        if (existing) {
-          setCart(existing)
-          return
+        try {
+          const existing = await getCart(savedId)
+          if (existing) {
+            setCart(existing)
+            return
+          }
+        } catch {
+          localStorage.removeItem(CART_ID_KEY)
         }
       }
 

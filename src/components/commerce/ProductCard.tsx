@@ -100,7 +100,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="text-display-md text-brand-dark line-clamp-2">
+      <h3 className="text-heading-lg text-brand-dark line-clamp-2">
         <Link
           href={href}
           className="hover:text-brand-gold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm"
