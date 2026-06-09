@@ -43,21 +43,21 @@ const SERVICES = [
     cta: { label: 'Get Started', href: '#inquiry' },
     highlighted: true,
   },
-  {
-    eyebrow:    'Full Service',
-    title:      'ABLE Partner',
-    isCustom:   true,
-    features: [
-      'Everything in Creative Launch',
-      'Dedicated project manager',
-      'Custom marketing strategy',
-      'Media & press outreach',
-      'Revenue reporting & analytics',
-      'Ongoing catalogue management',
-    ],
-    cta: { label: 'Contact Us', href: '#inquiry' },
-    highlighted: false,
-  },
+  // {
+  //   eyebrow:    'Full Service',
+  //   title:      'ABLE Partner',
+  //   isCustom:   true,
+  //   features: [
+  //     'Everything in Creative Launch',
+  //     'Dedicated project manager',
+  //     'Custom marketing strategy',
+  //     'Media & press outreach',
+  //     'Revenue reporting & analytics',
+  //     'Ongoing catalogue management',
+  //   ],
+  //   cta: { label: 'Contact Us', href: '#inquiry' },
+  //   highlighted: false,
+  // },
 ] as const
 
 export default function ServicesPage() {
@@ -83,8 +83,8 @@ export default function ServicesPage() {
             <h2 className="text-display-md text-brand-dark">Choose Your Path</h2>
           </Col>
 
-          {SERVICES.map((service) => (
-            <Col key={service.title} span={4} mdSpan={8} lgSpan={4}>
+          {SERVICES.map((service, i) => (
+            <Col key={service.title} span={4} mdSpan={4} lgSpan={5} start={i === 0 ? 2 : 7}>
               <ServiceTier {...service} />
             </Col>
           ))}

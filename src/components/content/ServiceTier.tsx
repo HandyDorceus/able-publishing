@@ -33,7 +33,7 @@ export function ServiceTier({
   return (
     <article
       className={cn(
-        'flex flex-col gap-6 rounded-xl p-8 border transition-shadow',
+        'flex flex-col gap-6 rounded-xl p-8 border transition-shadow h-full',
         highlighted
           ? 'bg-brand-dark text-brand-cream border-brand-dark shadow-xl'
           : 'bg-brand-cream text-brand-dark border-brand-dark/10 hover:shadow-md',
