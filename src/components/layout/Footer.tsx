@@ -152,8 +152,8 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-3">
             <Image
-              src="/logos/able-publishing/ABLE_Records-copy.png"
-              alt="ABLE Records"
+              src="/logos/the-store/Pen_Icon-white.png"
+              alt="ABLE Publishing"
               width={48}
               height={48}
               className="h-10 w-10 object-contain opacity-80"

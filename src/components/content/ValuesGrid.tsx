@@ -33,7 +33,7 @@ export function ValuesGrid({ heading = 'What We Stand For', values }: ValuesGrid
             key={value.title}
             span={4}
             mdSpan={4}
-            lgSpan={4}
+            lgSpan={6}
           >
             <div className="flex flex-col gap-3 p-6 rounded-xl border border-brand-dark/10 h-full">
               {/* Decorative accent */}

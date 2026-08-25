@@ -20,10 +20,6 @@ const VALUES = [
     description: 'Achieving beyond limits means holding every project to the highest standard — from cover design to distribution.',
   },
   {
-    title:       'Community',
-    description: 'We are stronger together. ABLE Publishing is a home for artists who lift each other up.',
-  },
-  {
     title:       'Authenticity',
     description: 'We don\'t chase trends. We help you make the work that only you can make, then put it in front of the people who need it.',
   },
@@ -31,10 +27,7 @@ const VALUES = [
     title:       'Access',
     description: 'Professional publishing should not be reserved for the well-connected. We open doors that have historically been closed.',
   },
-  {
-    title:       'Legacy',
-    description: 'Great work deserves to last. We publish with permanence in mind — building catalogues that endure.',
-  },
+
 ]
 
 export default function AboutPage() {

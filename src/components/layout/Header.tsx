@@ -60,14 +60,14 @@ export function Header({ cartCount = 0 }: HeaderProps) {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-sm border-b border-brand-dark/10">
+    <header className="sticky top-0 z-50 bg-brand-cream backdrop-blur-sm border-b border-brand-dark/10">
 
       {/* ── Main bar ── */}
       <div className="flex items-center justify-between px-[var(--page-px)] h-16 lg:h-[140px] w-full max-w-screen-2xl mx-auto">
 
         {/* Logo */}
         <Link href="/" aria-label="ABLE Publishing — home" className="flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-sm">
-          <span className="block bg-brand-cream">
+          <span className="block">
             <Image
               src="/logos/able-publishing/AP2.jpg"
               alt="ABLE Publishing"

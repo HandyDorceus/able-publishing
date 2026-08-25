@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 // TODO: ALAN — Replace with Keystatic reads (step 10) from the services collection.
 const SERVICES = [
   {
-    eyebrow:    'Essential',
+    eyebrow:    'Book Publishing Essential',
     title:      'Self-Publishing Starter',
     price:      499,
     priceLabel: 'per project',
@@ -20,25 +20,27 @@ const SERVICES = [
       'ISBN registration',
       'Print-on-demand setup',
       'Basic cover design consultation',
-      'Digital distribution (major platforms)',
       'Author copy review',
     ],
     cta: { label: 'Get Started', href: '#inquiry' },
     highlighted: false,
   },
   {
-    eyebrow:    'Most Popular',
-    title:      'Creative Launch',
-    price:      1200,
+    eyebrow:    'Music Publishing Essential',
+    title:      'Independant Music Starter',
+    price:      499,
     priceLabel: 'per project',
     isCustom:   false,
     features: [
-      'Everything in Starter',
-      'Professional cover design',
-      'Interior formatting & typesetting',
-      'Press kit & marketing copy',
-      'Social media assets',
-      '3-month distribution support',
+      'Song registration & publishing',
+      'Administration setup',
+      'Copyright registration guidance',
+      'PRO registration/setup (ASCAP, BMI, SESAC, etc.)',
+      'Digital music publisher',
+      'Administration',
+      'Royalty collection',
+      'Basic metadata & split-sheet review',
+      'Songwriter/publisher account setup',
     ],
     cta: { label: 'Get Started', href: '#inquiry' },
     highlighted: true,
@@ -70,7 +72,7 @@ export default function ServicesPage() {
             <span className="text-heading-sm text-brand-gold">What We Offer</span>
             <h1 className="text-display-lg text-brand-dark">Services</h1>
             <p className="text-body-lg text-brand-dark/60">
-              From first draft to final release — choose the level of support that&apos;s right for your project.
+              From first draft to final release, choose the level of support that&apos;s right for your project.
             </p>
           </Col>
         </Grid>

@@ -51,10 +51,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
       {/* ABLE Records badge — music products only */}
       {productType === 'Music' && (
-        <div className="absolute top-3 right-3 z-10">
+        <div className="absolute top-3 left-3 z-10">
           <Image
-            src="/logos/able-publishing/ABLE_Records-copy.png"
-            alt="ABLE Records"
+            src="/logos/the-store/Pen_Icon.jpg"
+            alt="ABLE Publishing"
             width={40}
             height={40}
             className="w-10 h-10 object-contain"
@@ -71,7 +71,7 @@ export function ProductCard({ product }: ProductCardProps) {
       >
         <div className={cn(
           'relative w-full',
-          productType === 'Book' ? 'aspect-[3/4]' : 'aspect-square',
+          'aspect-square',
         )}>
           {image ? (
             <Image
