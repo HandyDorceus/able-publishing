@@ -4,6 +4,8 @@ import { StoreClient }        from '@/components/commerce/StoreClient'
 import { StoreHero }          from '@/components/content/StoreHero'
 import { getAllProducts }      from '@/lib/shopify'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title:       'Store — ABLE Publishing',
   description: 'Browse books, music, and digital releases from ABLE Publishing.',
