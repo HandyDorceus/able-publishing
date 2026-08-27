@@ -1,6 +1,9 @@
 'use server'
 
+import { Resend } from 'resend'
 import { CONTACT } from '@/lib/contact'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -41,15 +44,25 @@ export async function submitContact(
 
   const recipient = CONTACT[DEPARTMENTS.includes(department as Department) ? department : 'general']
 
-  // TODO: ALAN — Send email via Resend / SendGrid / similar:
-  //   await resend.emails.send({
-  //     from:    'website@ablepublishing.art',
-  //     to:      recipient,
-  //     subject: subject || `New message from ${name}`,
-  //     text:    `Name: ${name}\nEmail: ${email}\nDepartment: ${department}\n\n${message}`,
-  //   })
+  const { error } = await resend.emails.send({
+    from:    'ABLE Publishing <no-reply@ablepublishing.art>',
+    to:      recipient,
+    replyTo: email,
+    subject: subject || `New ${department} inquiry from ${name}`,
+    html: `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Department:</strong> ${department}</p>
+      ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
+      <hr />
+      <p>${message.replace(/\n/g, '<br />')}</p>
+    `,
+  })
 
-  void recipient // referenced above — remove this line when email sending is wired
+  if (error) {
+    console.error('[contact] Resend error:', error)
+    return { success: false, error: 'Failed to send your message. Please try again or email us directly.' }
+  }
 
   return { success: true }
 }

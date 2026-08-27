@@ -1,6 +1,9 @@
 'use server'
 
+import { Resend } from 'resend'
 import { CONTACT } from '@/lib/contact'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -38,17 +41,24 @@ export async function submitInquiry(
 
   if (Object.keys(fieldErrors).length > 0) return { success: false, fieldErrors }
 
-  const recipient = CONTACT.publishing
+  const { error } = await resend.emails.send({
+    from:    'ABLE Publishing <no-reply@ablepublishing.art>',
+    to:      CONTACT.publishing,
+    replyTo: email,
+    subject: `New ${serviceType} inquiry from ${name}`,
+    html: `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Service Type:</strong> ${serviceType}</p>
+      <hr />
+      <p>${message.replace(/\n/g, '<br />')}</p>
+    `,
+  })
 
-  // TODO: ALAN — Send email via Resend / SendGrid / similar:
-  //   await resend.emails.send({
-  //     from:    'website@ablepublishing.art',
-  //     to:      recipient,
-  //     subject: `New inquiry — ${serviceType}`,
-  //     text:    `Name: ${name}\nEmail: ${email}\nService: ${serviceType}\n\n${message}`,
-  //   })
-
-  void recipient // referenced above — remove this line when email sending is wired
+  if (error) {
+    console.error('[inquiry] Resend error:', error)
+    return { success: false, error: 'Failed to send your inquiry. Please try again or email us directly.' }
+  }
 
   return { success: true }
 }
