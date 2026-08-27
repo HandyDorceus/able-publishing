@@ -133,11 +133,16 @@ export async function getAllProducts(filter?: ProductFilter): Promise<Product[]>
   const query =
     filter && filter !== 'All' ? `product_type:${filter}` : undefined
 
-  const data = await shopifyFetch<{
-    products: { edges: { node: ShopifyProduct }[] }
-  }>(PRODUCTS_QUERY, { first: 50, query })
+  try {
+    const data = await shopifyFetch<{
+      products: { edges: { node: ShopifyProduct }[] }
+    }>(PRODUCTS_QUERY, { first: 50, query })
 
-  return data.products.edges.map((e) => normalizeProduct(e.node))
+    return data.products.edges.map((e) => normalizeProduct(e.node))
+  } catch (err) {
+    console.error('[shopify] getAllProducts failed:', err)
+    return []
+  }
 }
 
 export async function getProductByHandle(handle: string): Promise<Product | null> {
@@ -145,12 +150,17 @@ export async function getProductByHandle(handle: string): Promise<Product | null
     return MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null
   }
 
-  const data = await shopifyFetch<{ productByHandle: ShopifyProduct | null }>(
-    PRODUCT_BY_HANDLE_QUERY,
-    { handle },
-  )
+  try {
+    const data = await shopifyFetch<{ productByHandle: ShopifyProduct | null }>(
+      PRODUCT_BY_HANDLE_QUERY,
+      { handle },
+    )
 
-  return data.productByHandle ? normalizeProduct(data.productByHandle) : null
+    return data.productByHandle ? normalizeProduct(data.productByHandle) : null
+  } catch (err) {
+    console.error('[shopify] getProductByHandle failed:', err)
+    return null
+  }
 }
 
 export async function createCart(): Promise<Cart> {
