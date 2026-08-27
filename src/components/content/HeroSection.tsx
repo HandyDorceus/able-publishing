@@ -40,7 +40,7 @@ export function HeroSection({
           start={media ? undefined : 3}
           className="flex flex-col gap-6"
         >
-          <h1 className="text-display-xl text-brand-dark" style={{ fontSize: 'clamp(1rem, 4.5vw, 4.5rem)' }}>{headline}</h1>
+          <h1 className="text-display-xl text-brand-dark italic" style={{ fontSize: 'clamp(1rem, 4.5vw, 4.5rem)' }}>{headline}</h1>
 
           <p className="text-body-lg text-brand-dark/70 max-w-prose">
             {subheadline}
