@@ -109,6 +109,7 @@ export function InquiryForm() {
         >
           <option value="" disabled>Select a service…</option>
           <option value="Book Publishing">Book Publishing</option>
+          <option value="Music Publishing">Music Publishing</option>
           <option value="Other">Other</option>
         </select>
       </Field>
