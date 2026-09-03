@@ -49,19 +49,6 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="relative flex flex-col gap-4 group">
 
-      {/* ABLE Records badge — music products only */}
-      {productType === 'Music' && (
-        <div className="absolute top-3 left-3 z-10">
-          <Image
-            src="/logos/the-store/Pen_Icon.jpg"
-            alt="ABLE Publishing"
-            width={40}
-            height={40}
-            className="w-10 h-10 object-contain"
-          />
-        </div>
-      )}
-
       {/* Cover image */}
       <Link
         href={href}
