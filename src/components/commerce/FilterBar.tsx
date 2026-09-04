@@ -13,8 +13,8 @@ interface FilterBarProps {
 const FILTERS: { label: string; value: ProductFilter }[] = [
   { label: 'All',    value: 'All'    },
   { label: 'Music',  value: 'Music'  },
-  { label: 'Book',   value: 'Book'   },
-  { label: 'Print',  value: 'Print'  },
+  { label: 'Books',  value: 'Book'   },
+  { label: 'Prints', value: 'Print'  },
   { label: 'Bundle', value: 'Bundle' },
 ]
 

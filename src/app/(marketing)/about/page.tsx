@@ -40,7 +40,7 @@ export default function AboutPage() {
         body={
           'ABLE Publishing was founded on a simple belief: every story, every song, and every poem deserves the platform it needs to reach the people who need it.\n\n' +
           'We partner with independent authors, musicians, and poets to produce, publish, and promote work with the care and professionalism it deserves — without asking you to give up ownership or control.\n\n' +
-          'Achieving Beyond Limits & Expectations is not just a tagline. It is our operating principle.'
+          'Achieving Beyond Limits & Expectations is not just a tagline.\nIt is our operating principle.'
         }
       />
 

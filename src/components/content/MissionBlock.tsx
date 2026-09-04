@@ -36,7 +36,9 @@ export function MissionBlock({ headline, body, image }: MissionBlockProps) {
           <div className="flex flex-col gap-4">
             {paragraphs.map((p, i) => (
               <p key={i} className="text-body-lg text-brand-dark/70">
-                {p}
+                {p.split('\n').map((line, j, arr) => (
+                  <span key={j}>{line}{j < arr.length - 1 && <br />}</span>
+                ))}
               </p>
             ))}
           </div>
